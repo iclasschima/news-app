@@ -11,6 +11,7 @@ const initialState = {
   error: null,
   filterSource: "",
   sources: [],
+  noOfResults: 0,
 };
 
 const articleSlice = createSlice({
@@ -26,7 +27,8 @@ const articleSlice = createSlice({
       })
       .addCase(fetchArticlesAsync.fulfilled, (state, action) => {
         state.loading = false;
-        state.articles = action.payload;
+        state.articles = action.payload.articles;
+        state.noOfResults = action.payload.noOfResults;
       })
       .addCase(fetchArticlesAsync.rejected, (state, action) => {
         state.loading = false;

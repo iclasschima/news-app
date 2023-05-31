@@ -3,7 +3,6 @@ import "./styles/global.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchArticlesAsync,
-  setFilterSource,
   fetchArticlesSourcesAync,
 } from "./store/actions/articleActions";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -15,30 +14,25 @@ const Articlespage = lazy(() => import("./pages/Articlespage"));
 
 const App = () => {
   const dispatch = useDispatch();
-
-  const filterSource = useSelector((state) => state.articles.filterSource);
-  const loading = useSelector((state) => state.articles.loading);
+  // const loading = useSelector((state) => state.articles.loading);
   const error = useSelector((state) => state.articles.error);
 
   useEffect(() => {
     const params = {
-      source: filterSource,
+      source: "",
       page: 1,
+      limit: 12,
     };
     dispatch(fetchArticlesAsync(params));
-  }, [filterSource, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchArticlesSourcesAync());
   }, []);
 
-  const handleFilterChange = (event) => {
-    dispatch(setFilterSource(event.target.value));
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -56,26 +50,6 @@ const App = () => {
         </div>
 
         <Footer />
-        {/* <h1>News Articles</h1>
-      <div>
-        Filter by source:
-        <select value={filterSource} onChange={handleFilterChange}>
-          <option value="">All</option>
-          {sources.map((source) => (
-            <option value={source.id}>{source.name}</option>
-          ))}
-        </select>
-      </div>
-      <ul className="">
-        {articles.map((article) => (
-          <li key={article.publishedAt}>
-            <h2>{article.title}</h2>
-            <p>{article.description}</p>
-            <p>Author: {article.author}</p>
-            <p>Published: {article.publishedAt}</p>
-          </li>
-        ))}
-      </ul> */}
       </BrowserRouter>
     </Suspense>
   );
