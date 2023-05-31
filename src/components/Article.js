@@ -22,7 +22,7 @@ export default function Article({
           {"  - "}
           {formattedDate(publishedAt)}
         </span>
-        <h5 className="mt-1 text-md md:text-md line-clamp-3 sm:h-24">
+        <h5 className="mt-1 text-md md:text-md line-clamp-3 sm:h-24 mb-2">
           {title}
         </h5>
         <p className="line-clamp-3 text-sm">{description}</p>
