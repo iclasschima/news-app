@@ -1,9 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import { FiEdit, FiBell } from "react-icons/fi";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+  const { pathname } = useLocation();
+
+  console.log(pathname);
 
   return (
     <nav className="">
@@ -58,31 +62,38 @@ export default function Navbar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 <div className="h-6 bg-gray-400 w-0.5"></div>
-                <a
-                  href="#"
-                  className="text-secondary px-3 pt-1 text-sm font-bold"
-                  aria-current="page"
+                <Link
+                  to="/"
+                  className={` px-3 pt-1 text-sm ${
+                    pathname.includes("news")
+                      ? "text-secondary font-medium"
+                      : "text-primary font-bold"
+                  }`}
                 >
                   Home
-                </a>
-                <a
-                  href="#"
-                  className="text-secondary px-3 pt-1  text-sm font-medium"
+                </Link>
+                <Link
+                  to="/news"
+                  className={` px-3 pt-1 text-sm ${
+                    !pathname.includes("news")
+                      ? "text-secondary font-medium"
+                      : "text-primary font-bold"
+                  }`}
                 >
-                  Community
-                </a>
-                <a
-                  href="#"
+                  News
+                </Link>
+                <Link
+                  to="/"
                   className="text-secondary pt-1 px-3 text-sm font-medium"
                 >
                   Contact Us
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/"
                   className="text-secondary pt-1 px-3 text-sm font-medium"
                 >
                   Subscribe
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -120,31 +131,38 @@ export default function Navbar() {
 
       <div className={showMenu ? "sm:hidden" : "hidden"} id="mobile-menu">
         <div className="space-y-1 px-2 pb-3 pt-0">
-          <a
-            href="#"
-            className=" text-secondary block px-3 py-2 text-base font-medium"
-            aria-current="page"
+          <Link
+            to="/"
+            className={`block px-3 py-2 text-base ${
+              pathname.includes("news")
+                ? "text-secondary font-medium"
+                : "text-primary font-bold"
+            }`}
           >
             Home
-          </a>
-          <a
-            href="#"
-            className="text-secondary block px-3 py-2 text-base font-medium"
+          </Link>
+          <Link
+            to="/news"
+            className={`block px-3 py-2 text-base ${
+              !pathname.includes("news")
+                ? "text-secondary font-medium"
+                : "text-primary font-bold"
+            }`}
           >
-            Community
-          </a>
-          <a
-            href="#"
+            News
+          </Link>
+          <Link
+            to=""
             className="text-secondary block px-3  py-2 text-base font-medium"
           >
             About Us
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to=""
             className="text-secondary px-3 py-2 text-base block font-medium"
           >
             Subscribe
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

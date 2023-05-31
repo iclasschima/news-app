@@ -8,7 +8,7 @@ export default function Article({
   author,
 }) {
   return (
-    <div className="mb-5">
+    <div className="mb-8">
       <div className="rounded h-48 overflow-hidden mb-3">
         <img
           src={urlToImage}

@@ -11,14 +11,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const Homepage = lazy(() => import("./pages/Homepage"));
+const Articlespage = lazy(() => import("./pages/Articlespage"));
 
 const App = () => {
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles.articles);
+
   const filterSource = useSelector((state) => state.articles.filterSource);
   const loading = useSelector((state) => state.articles.loading);
   const error = useSelector((state) => state.articles.error);
-  const sources = useSelector((state) => state.articles.sources);
 
   useEffect(() => {
     const params = {
@@ -48,9 +48,13 @@ const App = () => {
     <Suspense>
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-        </Routes>
+        <div className="min-h-[70vh] mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/news" element={<Articlespage />} />
+          </Routes>
+        </div>
+
         <Footer />
         {/* <h1>News Articles</h1>
       <div>
