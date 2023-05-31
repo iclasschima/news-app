@@ -1,5 +1,5 @@
 import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
-import { fetchArticles } from "../../services/api";
+import { fetchArticles, fetchArticlesSources } from "../../services/api";
 
 export const fetchArticlesAsync = createAsyncThunk(
   "articles/fetchArticles",
@@ -9,6 +9,18 @@ export const fetchArticlesAsync = createAsyncThunk(
       return response.articles; // Return the fetched articles
     } catch (error) {
       throw new Error("Failed to fetch articles"); // Throw an error if the API request fails
+    }
+  }
+);
+
+export const fetchArticlesSourcesAync = createAsyncThunk(
+  "articles/fetchArticlesSources",
+  async () => {
+    try {
+      const response = await fetchArticlesSources(); // Call the API function to fetch sources
+      return response.sources; // Return the fetched sources
+    } catch (error) {
+      throw new Error("Failed to fetch sorces"); // Throw an error if the API request fails
     }
   }
 );

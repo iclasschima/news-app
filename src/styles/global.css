@@ -1,0 +1,39 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "SatoshiMedium";
+  src: local("SatoshiMedium"),
+    url("./fonts/WEB/fonts/Satoshi-Medium.ttf") format("truetype");
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: "SatoshiBold";
+  src: local("SatoshiBold"),
+    url("./fonts/WEB/fonts/Satoshi-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title,
+.header,
+.sub,
+button,
+.btn,
+.bold,
+h1 span {
+  font-family: "SatoshiBold", sans-serif !important;
+}
+
+* {
+  font-family: "SatoshiMedium", sans-serif !important;
+  margin: 0;
+  padding: 0;
+}

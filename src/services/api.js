@@ -15,3 +15,14 @@ export const fetchArticles = async (params) => {
     throw new Error("Failed to fetch articles");
   }
 };
+
+export const fetchArticlesSources = async () => {
+  let url = `https://newsapi.org/v2/top-headlines/sources?country=us&apiKey=${API_KEY}`;
+
+  try {
+    const { data } = await axios.get(url);
+    return data;
+  } catch (error) {
+    throw new Error("Failed to fetch sorces");
+  }
+};

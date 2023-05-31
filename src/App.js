@@ -1,9 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, Suspense, lazy } from "react";
+import "./styles/global.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchArticlesAsync,
   setFilterSource,
+  fetchArticlesSourcesAync,
 } from "./store/actions/articleActions";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+const Homepage = lazy(() => import("./pages/Homepage"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -11,6 +18,7 @@ const App = () => {
   const filterSource = useSelector((state) => state.articles.filterSource);
   const loading = useSelector((state) => state.articles.loading);
   const error = useSelector((state) => state.articles.error);
+  const sources = useSelector((state) => state.articles.sources);
 
   useEffect(() => {
     const params = {
@@ -19,6 +27,10 @@ const App = () => {
     };
     dispatch(fetchArticlesAsync(params));
   }, [filterSource, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchArticlesSourcesAync());
+  }, []);
 
   const handleFilterChange = (event) => {
     dispatch(setFilterSource(event.target.value));
@@ -33,17 +45,24 @@ const App = () => {
   }
 
   return (
-    <div>
-      <h1>News Articles</h1>
+    <Suspense>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+        </Routes>
+        <Footer />
+        {/* <h1>News Articles</h1>
       <div>
         Filter by source:
         <select value={filterSource} onChange={handleFilterChange}>
           <option value="">All</option>
-          <option value="cnn">CNN</option>
-          <option value="bbc-news">BBC News</option>
+          {sources.map((source) => (
+            <option value={source.id}>{source.name}</option>
+          ))}
         </select>
       </div>
-      <ul>
+      <ul className="">
         {articles.map((article) => (
           <li key={article.publishedAt}>
             <h2>{article.title}</h2>
@@ -52,8 +71,9 @@ const App = () => {
             <p>Published: {article.publishedAt}</p>
           </li>
         ))}
-      </ul>
-    </div>
+      </ul> */}
+      </BrowserRouter>
+    </Suspense>
   );
 };
 
