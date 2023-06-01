@@ -14,7 +14,7 @@ export const fetchArticlesAsync = createAsyncThunk(
         noOfResults: response.totalResults > 100 ? 100 : response.totalResults,
       }; // Return the fetched articles
     } catch (error) {
-      throw new Error("Failed to fetch articles"); // Throw an error if the API request fails
+      throw error; // Throw an error if the API request fails
     }
   }
 );
@@ -26,7 +26,7 @@ export const fetchArticlesSourcesAync = createAsyncThunk(
       const response = await fetchArticlesSources(); // Call the API function to fetch sources
       return response.sources; // Return the fetched sources
     } catch (error) {
-      throw new Error("Failed to fetch sorces"); // Throw an error if the API request fails
+      throw error; // Throw an error if the API request fails
     }
   }
 );

@@ -96,7 +96,7 @@ export default function Navbar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 gap-6">
-            <span className="text-secondary text-sm font-medium flex gap-2 items-center">
+            <span className="text-secondary text-sm font-medium flex gap-2 items-center cursor-pointer">
               <FiEdit size={18} />
               <span className="hidden sm:block">Write</span>
             </span>

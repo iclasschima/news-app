@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import Article from "../Article";
 import { Link } from "react-router-dom";
+import ArticleSkeleton from "../ArticleSkeleton";
 
 export default function Latestposts() {
-  const { articles } = useSelector((state) => state.articles);
+  const { articles, loading } = useSelector((state) => state.articles);
 
   return (
     <div className="my-20">
@@ -16,17 +17,21 @@ export default function Latestposts() {
       </div>
 
       <div className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid gap-4 my-8">
-        {articles.slice(2, 6).map((article) => (
-          <Article
-            key={article.title}
-            title={article.title}
-            urlToImage={article?.urlToImage}
-            author={article?.author}
-            publishedAt={article?.publishedAt}
-            description={article?.description}
-            content={article?.content}
-          />
-        ))}
+        {loading
+          ? [...Array(4)].map((_, index) => <ArticleSkeleton key={index} />)
+          : articles
+              .slice(2, 6)
+              .map((article) => (
+                <Article
+                  key={article.title}
+                  title={article.title}
+                  urlToImage={article?.urlToImage}
+                  author={article?.author}
+                  publishedAt={article?.publishedAt}
+                  description={article?.description}
+                  content={article?.content}
+                />
+              ))}
       </div>
     </div>
   );

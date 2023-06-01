@@ -12,6 +12,11 @@ export const fetchArticles = async (params) => {
     const { data } = await axios.get(url);
     return data;
   } catch (error) {
+    console.log(error.response.data);
+
+    if (error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
     throw new Error("Failed to fetch articles");
   }
 };
@@ -23,6 +28,9 @@ export const fetchArticlesSources = async () => {
     const { data } = await axios.get(url);
     return data;
   } catch (error) {
-    throw new Error("Failed to fetch sorces");
+    if (error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error("Failed to fetch sources");
   }
 };

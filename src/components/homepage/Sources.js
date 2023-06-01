@@ -1,7 +1,11 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setFilterSource } from "../../store/actions/articleActions";
 
 export default function Sources() {
   const { sources } = useSelector((state) => state.articles);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className="my-20">
@@ -12,6 +16,10 @@ export default function Sources() {
           <span
             key={source.id}
             className="mb-5 cursor-pointer hover:text-primary"
+            onClick={() => {
+              dispatch(setFilterSource(source.id));
+              navigate("/news");
+            }}
           >
             {source.name}
           </span>

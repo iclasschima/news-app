@@ -8,6 +8,7 @@ import {
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ErrorPanel from "./components/ErrorPanel";
 
 const Homepage = lazy(() => import("./pages/Homepage"));
 const Articlespage = lazy(() => import("./pages/ArticlesPage"));
@@ -31,7 +32,7 @@ const App = () => {
   }, []);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <ErrorPanel />;
   }
 
   return (
