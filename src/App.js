@@ -3,7 +3,7 @@ import "./styles/global.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchArticlesAsync,
-  fetchArticlesSourcesAync,
+  fetchArticlesSourcesAsync,
 } from "./store/actions/articleActions";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -31,7 +31,7 @@ const App = () => {
 
   // Fetch article sources on initial component mount
   useEffect(() => {
-    dispatch(fetchArticlesSourcesAync());
+    dispatch(fetchArticlesSourcesAsync());
   }, []);
 
   // Handle error state
