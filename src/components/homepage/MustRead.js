@@ -9,7 +9,7 @@ export default function MustRead() {
       <h1 className="text-secondary text-2xl">Must Read</h1>
 
       <div className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid gap-4 my-8">
-        {articles.slice(8, 12).map((article) => (
+        {articles.slice(6, 10).map((article) => (
           <Article
             key={article.title}
             title={article.title}
@@ -17,6 +17,7 @@ export default function MustRead() {
             author={article?.author}
             publishedAt={article?.publishedAt}
             description={article?.description}
+            content={article?.content}
           />
         ))}
       </div>

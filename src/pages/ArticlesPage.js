@@ -9,7 +9,7 @@ export default function ArticlesPage() {
   const { articles, noOfResults, filterSource } = useSelector(
     (state) => state.articles
   );
-  const [pageLimit, setPageLimit] = useState(12);
+
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
@@ -17,14 +17,13 @@ export default function ArticlesPage() {
     const params = {
       source: filterSource,
       page: currentPage,
-      limit: pageLimit,
     };
     dispatch(fetchArticlesAsync(params));
   };
 
   useEffect(() => {
     fetchArticles();
-  }, [currentPage, pageLimit]);
+  }, [currentPage]);
 
   useEffect(() => {
     currentPage !== 1 ? setCurrentPage(1) : fetchArticles();
@@ -34,7 +33,7 @@ export default function ArticlesPage() {
     <div className="my-8">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center">
         <h1 className="text-secondary text-2xl">All News</h1>
-        <Filteroptions pageLimit={pageLimit} setPageLimit={setPageLimit} />
+        <Filteroptions />
       </div>
 
       <div className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid gap-4 my-8">
@@ -46,13 +45,14 @@ export default function ArticlesPage() {
             author={article?.author}
             publishedAt={article?.publishedAt}
             description={article?.description}
+            content={article?.content}
           />
         ))}
       </div>
 
       <Pagination
         currentPage={currentPage}
-        totalPages={Math.floor(noOfResults / 12)}
+        totalPages={Math.floor(noOfResults / 10)}
         onPageChange={setCurrentPage}
       />
     </div>

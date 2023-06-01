@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setFilterSource } from "../../store/actions/articleActions";
 
-export default function Filteroptions({ pageLimit, setPageLimit }) {
+export default function Filteroptions() {
   const { sources } = useSelector((state) => state.articles);
   const dispatch = useDispatch();
 
@@ -31,24 +31,6 @@ export default function Filteroptions({ pageLimit, setPageLimit }) {
               {source.name}
             </option>
           ))}
-        </select>
-      </div>
-
-      <div className="flex items-center">
-        <label
-          htmlFor="mySelect"
-          className="text-gray-700 font-bold mr-2 text-sm"
-        >
-          Per Page:
-        </label>
-        <select
-          id="mySelect"
-          onChange={(e) => setPageLimit(e.target.value)}
-          className="bg-white border border-gray-300 rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-primary text-sm"
-        >
-          <option value="12">12</option>
-          <option value="16">16</option>
-          <option value="18">18</option>
         </select>
       </div>
     </div>

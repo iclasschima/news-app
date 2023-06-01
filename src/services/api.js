@@ -3,8 +3,8 @@ import axios from "axios";
 const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
 
 export const fetchArticles = async (params) => {
-  const { page, source, limit } = params;
-  let url = `https://newsapi.org/v2/top-headlines?language=en&page=${page}&pageSize=${limit}&apiKey=${API_KEY}`;
+  const { page, source } = params;
+  let url = `https://newsapi.org/v2/top-headlines?language=en&page=${page}&pageSize=10&apiKey=${API_KEY}`;
 
   url += source ? `&sources=${source}` : "";
 

@@ -16,7 +16,7 @@ export default function Latestposts() {
       </div>
 
       <div className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid gap-4 my-8">
-        {articles.slice(3, 7).map((article) => (
+        {articles.slice(2, 6).map((article) => (
           <Article
             key={article.title}
             title={article.title}
@@ -24,6 +24,7 @@ export default function Latestposts() {
             author={article?.author}
             publishedAt={article?.publishedAt}
             description={article?.description}
+            content={article?.content}
           />
         ))}
       </div>

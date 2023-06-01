@@ -7,8 +7,6 @@ export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   return (
     <nav className="">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
