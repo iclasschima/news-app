@@ -7,13 +7,13 @@ import NewLetter from "../components/homepage/Newsletter";
 
 export default function Homepage() {
   return (
-    <div className="">
+    <>
       <Banner />
       <Headline />
       <Latestposts />
       <Sources />
       <MustRead />
       <NewLetter />
-    </div>
+    </>
   );
 }

@@ -9,7 +9,7 @@ export default function Headline() {
   );
 
   return (
-    <div className="sm:grid-cols-2 grid gap-6 sm:my-20 ">
+    <div className="sm:grid-cols-2 grid gap-6 sm:my-20">
       {loading ? (
         <>
           <div className="rounded bg-gray-300 md:h-[20rem] h-[10rem] sm:mb-2"></div>
@@ -36,7 +36,7 @@ export default function Headline() {
               {"     -   "}
               {formattedDate(selectedArticle?.publishedAt)}
             </span>
-            <h5 className="mt-1 mb-3 sm:mb-5 text-lg md:text-3xl ">
+            <h5 className="mt-1 mb-3 sm:mb-5 text-lg md:text-3xl hover:text-primary cursor-pointer">
               {selectedArticle?.title}
             </h5>
 

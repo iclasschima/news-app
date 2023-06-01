@@ -40,7 +40,7 @@ export default function Article({
           {" - "}
           {formattedDate(publishedAt)}
         </span>
-        <h5 className="mt-1 text-md md:text-md line-clamp-3 sm:h-24 mb-2">
+        <h5 className="mt-1 text-md md:text-md line-clamp-3 sm:h-24 mb-2 hover:text-primary cursor-pointer">
           {title}
         </h5>
         <p className="line-clamp-3 text-sm">{description}</p>
