@@ -1,6 +1,7 @@
 import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { fetchArticles, fetchArticlesSources } from "../../services/api";
 
+// Async thunk action to fetch articles
 export const fetchArticlesAsync = createAsyncThunk(
   "articles/fetchArticles",
   async (payload) => {
@@ -19,7 +20,8 @@ export const fetchArticlesAsync = createAsyncThunk(
   }
 );
 
-export const fetchArticlesSourcesAync = createAsyncThunk(
+// Async thunk action to fetch article sources
+export const fetchArticlesSourcesAsync = createAsyncThunk(
   "articles/fetchArticlesSources",
   async () => {
     try {
@@ -31,4 +33,5 @@ export const fetchArticlesSourcesAync = createAsyncThunk(
   }
 );
 
+// Action to set the filter source
 export const setFilterSource = createAction("articles/setFilterSource");

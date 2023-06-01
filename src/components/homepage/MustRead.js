@@ -11,8 +11,10 @@ export default function MustRead() {
 
       <div className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid gap-4 my-8">
         {loading
-          ? [...Array(4)].map((_, index) => <ArticleSkeleton key={index} />)
-          : articles
+          ? // Render article skeletons when loading
+            [...Array(4)].map((_, index) => <ArticleSkeleton key={index} />)
+          : // Render articles when not loading
+            articles
               .slice(6, 10)
               .map((article) => (
                 <Article

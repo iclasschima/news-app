@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setFilterSource } from "../../store/actions/articleActions";
 
-export default function Filteroptions() {
+export default function FilterOptions() {
   const { sources } = useSelector((state) => state.articles);
   const dispatch = useDispatch();
 
   const filterSource = useSelector((state) => state.articles.filterSource);
+
   const handleFilterChange = (event) => {
     dispatch(setFilterSource(event.target.value));
   };
@@ -27,7 +28,7 @@ export default function Filteroptions() {
         >
           <option value="">All</option>
           {sources.map((source) => (
-            <option className="text-sm" value={source.id}>
+            <option className="text-sm" value={source.id} key={source.id}>
               {source.name}
             </option>
           ))}

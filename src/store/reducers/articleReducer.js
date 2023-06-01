@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchArticlesAsync,
   setFilterSource,
-  fetchArticlesSourcesAync,
+  fetchArticlesSourcesAsync,
 } from "../actions/articleActions";
 
 const initialState = {
@@ -22,30 +22,37 @@ const articleSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchArticlesAsync.pending, (state) => {
+        // Update loading state and reset error
         state.loading = true;
         state.error = null;
       })
       .addCase(fetchArticlesAsync.fulfilled, (state, action) => {
+        // Update loading state, set fetched articles and number of results
         state.loading = false;
         state.articles = action.payload.articles;
         state.noOfResults = action.payload.noOfResults;
       })
       .addCase(fetchArticlesAsync.rejected, (state, action) => {
+        // Update loading state and set error message
         state.loading = false;
         state.error = action.error.message;
       })
       .addCase(setFilterSource, (state, action) => {
+        // Update filter source
         state.filterSource = action.payload;
       })
-      .addCase(fetchArticlesSourcesAync.pending, (state) => {
+      .addCase(fetchArticlesSourcesAsync.pending, (state) => {
+        // Update loading state and reset error
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchArticlesSourcesAync.fulfilled, (state, action) => {
+      .addCase(fetchArticlesSourcesAsync.fulfilled, (state, action) => {
+        // Update loading state and set fetched sources
         state.loading = false;
         state.sources = action.payload;
       })
-      .addCase(fetchArticlesSourcesAync.rejected, (state, action) => {
+      .addCase(fetchArticlesSourcesAsync.rejected, (state, action) => {
+        // Update loading state and set error message
         state.loading = false;
         state.error = action.error.message;
       });

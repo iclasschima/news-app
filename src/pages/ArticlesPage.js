@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Article from "../components/Article";
 import ArticleSkeleton from "../components/ArticleSkeleton";
 import Pagination from "../components/articlespage/Pagination";
-import Filteroptions from "../components/articlespage/Filteroptions";
+import FilterOptions from "../components/articlespage/FilterOptions";
 import { useEffect, useState } from "react";
 import { fetchArticlesAsync } from "../store/actions/articleActions";
 
@@ -14,6 +14,7 @@ export default function ArticlesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
+  // Fetch articles based on current page and filter source
   const fetchArticles = () => {
     const params = {
       source: filterSource,
@@ -24,23 +25,26 @@ export default function ArticlesPage() {
 
   useEffect(() => {
     fetchArticles();
-  }, [currentPage]);
+  }, [currentPage, filterSource]);
 
+  // Reset to first page when filter source changes
   useEffect(() => {
-    currentPage !== 1 ? setCurrentPage(1) : fetchArticles();
+    setCurrentPage(1);
   }, [filterSource]);
 
   return (
     <div className="my-8">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center">
         <h1 className="text-secondary text-2xl">All News</h1>
-        <Filteroptions />
+        <FilterOptions />
       </div>
 
       <div className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid gap-4 my-8">
         {loading
-          ? [...Array(8)].map(() => <ArticleSkeleton />)
-          : articles.map((article) => (
+          ? // Render article skeletons when loading
+            [...Array(8)].map((_, index) => <ArticleSkeleton key={index} />)
+          : // Render articles when not loading
+            articles.map((article) => (
               <Article
                 key={article.title}
                 title={article.title}
