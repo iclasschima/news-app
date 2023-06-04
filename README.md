@@ -1,6 +1,6 @@
 # News Application
 
-This is a news application built using React/Next and Redux Toolkit. It fetches and displays news articles from the News API provided by newsapi.org.
+This is a news application built using React and Redux Toolkit. It fetches and displays news articles from the News API provided by newsapi.org.
 
 ## Prerequisites
 
